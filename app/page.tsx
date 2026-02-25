@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Github,
   Linkedin,
@@ -23,6 +26,8 @@ import {
   CircuitBoard,
   Cog,
   Download,
+  Menu,
+  X,
 } from "lucide-react";
 
 /* ─────────────────── DATA ─────────────────── */
@@ -145,6 +150,8 @@ const navItems = [
 /* ─────────────────── PAGE ─────────────────── */
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="relative min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)]">
       {/* ── Noise overlay ── */}
@@ -152,15 +159,15 @@ export default function Home() {
 
       {/* ── Ambient orbs ── */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full bg-indigo-600/[0.07] blur-[150px] animate-glow-pulse" />
-        <div className="absolute top-1/2 -right-48 h-[500px] w-[500px] rounded-full bg-violet-600/[0.06] blur-[140px] animate-glow-pulse animation-delay-500" />
-        <div className="absolute -bottom-32 left-1/3 h-[400px] w-[400px] rounded-full bg-fuchsia-600/[0.05] blur-[130px] animate-glow-pulse animation-delay-300" />
+        <div className="absolute -top-32 -left-32 h-[300px] w-[300px] sm:h-[600px] sm:w-[600px] rounded-full bg-indigo-600/[0.07] blur-[100px] sm:blur-[150px] animate-glow-pulse" />
+        <div className="absolute top-1/2 -right-48 h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-violet-600/[0.06] blur-[100px] sm:blur-[140px] animate-glow-pulse animation-delay-500" />
+        <div className="absolute -bottom-32 left-1/3 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-fuchsia-600/[0.05] blur-[80px] sm:blur-[130px] animate-glow-pulse animation-delay-300" />
       </div>
 
       {/* ────────── NAVBAR ────────── */}
       <nav className="fixed top-0 z-50 w-full">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/[0.06] bg-black/60 px-6 py-3 backdrop-blur-xl">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="mt-3 sm:mt-4 flex items-center justify-between rounded-2xl border border-white/[0.06] bg-black/60 px-4 sm:px-6 py-3 backdrop-blur-xl">
             <a href="#" className="text-xl font-extrabold gradient-text tracking-tight">
               SS<span className="text-indigo-400">.</span>
             </a>
@@ -176,12 +183,12 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <a
                 href="https://linkedin.com/in/sidhant79"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:border-indigo-500/30 hover:text-white hover:bg-white/[0.04]"
+                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:border-indigo-500/30 hover:text-white hover:bg-white/[0.04]"
               >
                 <Linkedin size={15} />
               </a>
@@ -189,20 +196,65 @@ export default function Home() {
                 href="https://github.com/sharmasidhant335-netizen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:border-indigo-500/30 hover:text-white hover:bg-white/[0.04]"
+                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:border-indigo-500/30 hover:text-white hover:bg-white/[0.04]"
               >
                 <Github size={15} />
               </a>
               <a
                 href="/CV_202602172103398633_12314731.pdf"
                 download
-                className="ml-1 inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.08] px-3 py-1.5 text-xs font-semibold text-emerald-300 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15]"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.08] px-3 py-1.5 text-xs font-semibold text-emerald-300 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15]"
               >
                 <Download size={13} />
                 CV
               </a>
+              {/* Mobile hamburger */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:text-white md:hidden"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
             </div>
           </div>
+
+          {/* Mobile menu dropdown */}
+          {mobileMenuOpen && (
+            <div className="mt-2 rounded-2xl border border-white/[0.06] bg-black/80 p-4 backdrop-blur-xl md:hidden mobile-menu-enter">
+              <ul className="space-y-1">
+                {navItems.map((n) => (
+                  <li key={n.href}>
+                    <a
+                      href={n.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block rounded-lg px-4 py-3 text-sm text-[var(--color-muted)] transition-all hover:text-white hover:bg-white/[0.04]"
+                    >
+                      {n.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 flex items-center gap-3 border-t border-white/[0.06] pt-3">
+                <a
+                  href="https://linkedin.com/in/sidhant79"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:text-white"
+                >
+                  <Linkedin size={15} />
+                </a>
+                <a
+                  href="https://github.com/sharmasidhant335-netizen"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--color-muted)] transition-all hover:text-white"
+                >
+                  <Github size={15} />
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -212,10 +264,10 @@ export default function Home() {
           {/* dot grid */}
           <div className="dot-grid absolute inset-0 opacity-40" />
 
-          <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 text-center">
+          <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 sm:px-6 text-center">
             {/* status badge */}
-            <div className="animate-fade-in-up opacity-0 mb-8">
-              <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.08] px-5 py-2 text-sm font-medium text-indigo-300">
+            <div className="animate-fade-in-up opacity-0 mb-6 sm:mb-8">
+              <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.08] px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-indigo-300">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500" />
@@ -225,14 +277,14 @@ export default function Home() {
             </div>
 
             {/* name */}
-            <h1 className="animate-fade-in-up opacity-0 animation-delay-100 text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-8xl">
+            <h1 className="animate-fade-in-up opacity-0 animation-delay-100 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-8xl">
               <span className="gradient-text">Sidhant</span>
               <br />
               <span className="gradient-text-subtle">Sharma</span>
             </h1>
 
             {/* subtitle */}
-            <p className="animate-fade-in-up opacity-0 animation-delay-200 mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-muted)] md:text-xl">
+            <p className="animate-fade-in-up opacity-0 animation-delay-200 mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-[var(--color-muted)] md:text-xl">
               EEE undergrad building at the intersection of{" "}
               <span className="text-indigo-400 font-medium">hardware</span> and{" "}
               <span className="text-violet-400 font-medium">software</span>
@@ -240,24 +292,24 @@ export default function Home() {
             </p>
 
             {/* CTA buttons */}
-            <div className="animate-fade-in-up opacity-0 animation-delay-300 mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="animate-fade-in-up opacity-0 animation-delay-300 mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-indigo-600 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_32px_rgba(99,102,241,0.4)]"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-indigo-600 px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_32px_rgba(99,102,241,0.4)]"
               >
                 View My Work
                 <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#about"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-7 py-3.5 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
               >
                 About Me
               </a>
               <a
                 href="/CV_202602172103398633_12314731.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-7 py-3.5 text-sm font-semibold text-emerald-300 backdrop-blur transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15] hover:shadow-[0_0_24px_rgba(16,185,129,0.2)]"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-emerald-300 backdrop-blur transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15] hover:shadow-[0_0_24px_rgba(16,185,129,0.2)]"
               >
                 <Download size={16} />
                 Download CV
@@ -265,9 +317,9 @@ export default function Home() {
             </div>
 
             {/* stats bar */}
-            <div className="animate-fade-in-up opacity-0 animation-delay-500 mt-20 grid w-full max-w-lg grid-cols-4 divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
-              {stats.map((s) => (
-                <div key={s.label} className="stat-card">
+            <div className="animate-fade-in-up opacity-0 animation-delay-500 mt-12 sm:mt-20 grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
+              {stats.map((s, i) => (
+                <div key={s.label} className={`stat-card ${i < 2 ? 'border-b sm:border-b-0 border-white/[0.06]' : ''}`}>
                   <div className="stat-number">{s.value}</div>
                   <div className="stat-label">{s.label}</div>
                 </div>
@@ -275,7 +327,7 @@ export default function Home() {
             </div>
 
             {/* scroll indicator */}
-            <div className="absolute bottom-10 animate-fade-in opacity-0 animation-delay-800">
+            <div className="absolute bottom-6 sm:bottom-10 animate-fade-in opacity-0 animation-delay-800 hidden sm:flex">
               <div className="flex flex-col items-center gap-2 text-[var(--color-muted)]">
                 <span className="text-xs tracking-widest uppercase">Scroll</span>
                 <div className="h-8 w-[1.5px] bg-gradient-to-b from-indigo-500/60 to-transparent" />
@@ -285,14 +337,14 @@ export default function Home() {
         </section>
 
         {/* ────────── ABOUT ────────── */}
-        <section id="about" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
+        <section id="about" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="section-label">
               <span>About Me</span>
             </div>
             <div className="grid gap-12 md:grid-cols-5">
               <div className="md:col-span-3">
-                <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
+                <h2 className="mb-6 text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl">
                   Passionate about building things that{" "}
                   <span className="gradient-text">make a real impact</span>
                 </h2>
@@ -337,22 +389,22 @@ export default function Home() {
         </section>
 
         {/* ────────── SKILLS ────────── */}
-        <section id="skills" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
+        <section id="skills" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="section-label">
               <span>Technical Skills</span>
             </div>
-            <h2 className="mb-16 text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mb-10 sm:mb-16 text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl">
               My <span className="gradient-text">toolbox</span>
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
               {Object.entries(skills).map(([category, { items, icon: Icon, color }], i) => (
                 <div
                   key={category}
-                  className={`glass-card rounded-2xl p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}
+                  className={`glass-card rounded-2xl p-5 sm:p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}
                 >
-                  <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${color} bg-opacity-10`}>
+                  <div className={`mb-4 sm:mb-5 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br ${color} bg-opacity-10`}>
                     <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[var(--color-background)]/80">
                       <Icon size={22} className="text-white/80" />
                     </div>
@@ -373,16 +425,16 @@ export default function Home() {
         </section>
 
         {/* ────────── EXPERIENCE ────────── */}
-        <section id="experience" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
+        <section id="experience" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="section-label">
               <span>Work Experience</span>
             </div>
-            <h2 className="mb-16 text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mb-10 sm:mb-16 text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl">
               Where I&apos;ve <span className="gradient-text">contributed</span>
             </h2>
 
-            <div className="relative pl-10 md:pl-12">
+            <div className="relative pl-8 sm:pl-10 md:pl-12">
               {/* vertical line */}
               <div className="timeline-line" />
 
@@ -392,8 +444,8 @@ export default function Home() {
                   return (
                     <div key={i} className="relative">
                       <div className="timeline-dot" />
-                      <div className={`glass-card rounded-2xl p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}>
-                        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className={`glass-card rounded-2xl p-5 sm:p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}>
+                        <div className="mb-4 sm:mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                           <div className="flex items-center gap-3">
                             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
                               <Icon size={20} />
@@ -426,21 +478,21 @@ export default function Home() {
         </section>
 
         {/* ────────── PROJECTS ────────── */}
-        <section id="projects" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
+        <section id="projects" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="section-label">
               <span>Featured Projects</span>
             </div>
-            <h2 className="mb-16 text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mb-10 sm:mb-16 text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl">
               Things I&apos;ve <span className="gradient-text">built</span>
             </h2>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((p, i) => {
                 const Icon = p.icon;
                 return (
                   <div key={i} className="gradient-border-card opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}">
-                    <div className="relative rounded-2xl bg-[rgba(8,8,16,0.95)] p-8">
+                    <div className="relative rounded-2xl bg-[rgba(8,8,16,0.95)] p-5 sm:p-8">
                       {/* header */}
                       <div className="mb-6 flex items-center justify-between">
                         <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${p.color}`}>
@@ -478,15 +530,15 @@ export default function Home() {
         </section>
 
         {/* ────────── CERTIFICATES & ACHIEVEMENTS ────────── */}
-        <section id="certificates" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-16 lg:grid-cols-2">
+        <section id="certificates" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid gap-12 sm:gap-16 lg:grid-cols-2">
               {/* Certificates */}
               <div>
                 <div className="section-label">
                   <span>Certificates</span>
                 </div>
-                <h2 className="mb-10 text-3xl font-bold tracking-tight">
+                <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-bold tracking-tight">
                   Continuous <span className="gradient-text">learning</span>
                 </h2>
                 <div className="space-y-4">
@@ -501,10 +553,10 @@ export default function Home() {
                           <Icon size={18} />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium">{c.title}</p>
-                          <p className="text-xs text-[var(--color-muted)]">{c.date}</p>
+                          <p className="text-sm font-medium leading-snug">{c.title}</p>
+                          <p className="text-xs text-[var(--color-muted)] mt-0.5">{c.date}</p>
                         </div>
-                        <BadgeCheck size={18} className="shrink-0 text-indigo-400" />
+                        <BadgeCheck size={18} className="hidden sm:block shrink-0 text-indigo-400" />
                       </div>
                     );
                   })}
@@ -516,7 +568,7 @@ export default function Home() {
                 <div className="section-label">
                   <span>Achievements</span>
                 </div>
-                <h2 className="mb-10 text-3xl font-bold tracking-tight">
+                <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-bold tracking-tight">
                   Notable <span className="gradient-text">wins</span>
                 </h2>
                 <div className="space-y-4">
@@ -541,27 +593,27 @@ export default function Home() {
         </section>
 
         {/* ────────── EDUCATION ────────── */}
-        <section id="education" className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
+        <section id="education" className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="section-label">
               <span>Education</span>
             </div>
-            <h2 className="mb-16 text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mb-10 sm:mb-16 text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl">
               Academic <span className="gradient-text">journey</span>
             </h2>
 
-            <div className="relative pl-10 md:pl-12">
+            <div className="relative pl-8 sm:pl-10 md:pl-12">
               <div className="timeline-line" />
 
               <div className="space-y-10">
                 {education.map((ed, i) => (
                   <div key={i} className="relative">
                     <div className="timeline-dot" />
-                    <div className={`glass-card rounded-2xl p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}>
+                    <div className={`glass-card rounded-2xl p-5 sm:p-8 opacity-0 animate-fade-in-up animation-delay-${(i + 1) * 200}`}>
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                         <div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-lg font-bold">{ed.institution}</h3>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="text-base sm:text-lg font-bold">{ed.institution}</h3>
                             {ed.current && (
                               <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[0.65rem] font-semibold text-emerald-400 border border-emerald-500/20">
                                 Current
@@ -578,8 +630,8 @@ export default function Home() {
                             </span>
                           </div>
                         </div>
-                        <div className="flex flex-col items-center rounded-xl border border-white/[0.06] bg-white/[0.03] px-5 py-3">
-                          <span className="text-2xl font-extrabold gradient-text">{ed.score}</span>
+                        <div className="flex flex-col items-center self-start rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 sm:px-5 py-2 sm:py-3">
+                          <span className="text-xl sm:text-2xl font-extrabold gradient-text">{ed.score}</span>
                           <span className="text-[0.65rem] text-[var(--color-muted)] uppercase tracking-wider">Score</span>
                         </div>
                       </div>
@@ -592,17 +644,17 @@ export default function Home() {
         </section>
 
         {/* ────────── CTA ────────── */}
-        <section className="relative py-32">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="glass-card relative overflow-hidden rounded-3xl p-12 text-center md:p-20">
+        <section className="relative py-16 sm:py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="glass-card relative overflow-hidden rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center md:p-20">
               {/* glow behind */}
               <div className="absolute inset-0 -z-10">
                 <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 blur-[100px]" />
               </div>
-              <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
+              <h2 className="mb-4 text-2xl sm:text-3xl font-bold tracking-tight md:text-5xl">
                 Let&apos;s <span className="gradient-text">connect</span>
               </h2>
-              <p className="mx-auto mb-10 max-w-md text-[var(--color-muted)]">
+              <p className="mx-auto mb-8 sm:mb-10 max-w-md text-sm sm:text-base text-[var(--color-muted)]">
                 I&apos;m always open to discussing new projects, internship opportunities,
                 or interesting engineering challenges.
               </p>
@@ -611,7 +663,7 @@ export default function Home() {
                   href="https://linkedin.com/in/sidhant79"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_40px_rgba(99,102,241,0.35)]"
+                  className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 sm:px-8 py-3 sm:py-4 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_40px_rgba(99,102,241,0.35)]"
                 >
                   <Linkedin size={16} />
                   Connect on LinkedIn
@@ -621,7 +673,7 @@ export default function Home() {
                   href="https://github.com/sharmasidhant335-netizen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-8 py-4 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 sm:px-8 py-3 sm:py-4 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
                 >
                   <Github size={16} />
                   View GitHub
@@ -634,7 +686,7 @@ export default function Home() {
 
       {/* ────────── FOOTER ────────── */}
       <footer className="relative border-t border-white/[0.04]">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 md:flex-row md:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:gap-6 px-4 sm:px-6 py-8 sm:py-10 md:flex-row md:justify-between">
           <div className="flex items-center gap-3">
             <span className="text-lg font-extrabold gradient-text">SS.</span>
             <span className="text-sm text-[var(--color-muted)]">
@@ -663,7 +715,7 @@ export default function Home() {
       {/* ── Back to top ── */}
       <a
         href="#"
-        className="fixed bottom-8 right-8 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-black/60 text-white/70 shadow-2xl backdrop-blur-lg transition-all hover:border-indigo-500/30 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.2)]"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-black/60 text-white/70 shadow-2xl backdrop-blur-lg transition-all hover:border-indigo-500/30 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.2)]"
       >
         <ArrowUp size={16} />
       </a>
