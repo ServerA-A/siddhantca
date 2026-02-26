@@ -336,7 +336,7 @@ export default function Home() {
             </div>
 
             {/* stats bar */}
-            <div className="animate-fade-in-up opacity-0 animation-delay-600 mt-10 sm:mt-14 grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
+            <div className="animate-fade-in-up opacity-0 animation-delay-600 mt-10 sm:mt-14 mb-16 sm:mb-20 grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
               {stats.map((s, i) => (
                 <div key={s.label} className={`stat-card ${i < 2 ? 'border-b sm:border-b-0 border-white/[0.06]' : ''}`}>
                   <div className="stat-number">{s.value}</div>
@@ -346,7 +346,7 @@ export default function Home() {
             </div>
 
             {/* scroll indicator */}
-            <div className="absolute bottom-6 sm:bottom-10 animate-fade-in opacity-0 animation-delay-800 hidden sm:flex">
+            <div className="animate-fade-in opacity-0 animation-delay-800 hidden sm:flex">
               <div className="flex flex-col items-center gap-2 text-[var(--color-muted)]">
                 <span className="text-xs tracking-widest uppercase">Scroll</span>
                 <div className="h-8 w-[1.5px] bg-gradient-to-b from-indigo-500/60 to-transparent" />
