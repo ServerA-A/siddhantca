@@ -266,21 +266,13 @@ export default function Home() {
           <div className="dot-grid absolute inset-0 opacity-40" />
 
           <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 text-center">
-            {/* profile photo with fancy frame */}
+            {/* profile photo with frame */}
             <div className="animate-fade-in-up opacity-0 mb-4 sm:mb-6">
               <div className="profile-frame relative flex items-center justify-center">
                 {/* Spinning gradient ring */}
-                <div className="profile-ring absolute h-36 w-36 sm:h-44 sm:w-44 rounded-full" />
-                {/* Outer glow pulse */}
-                <div className="absolute h-36 w-36 sm:h-44 sm:w-44 rounded-full bg-indigo-500/10 blur-xl animate-glow-pulse" />
-                {/* Orbiting dots */}
-                <div className="profile-orbit absolute h-40 w-40 sm:h-48 sm:w-48">
-                  <span className="profile-dot profile-dot-1" />
-                  <span className="profile-dot profile-dot-2" />
-                  <span className="profile-dot profile-dot-3" />
-                </div>
+                <div className="profile-ring absolute h-[7.5rem] w-[7.5rem] sm:h-[9.5rem] sm:w-[9.5rem] rounded-full" />
                 {/* Inner photo container */}
-                <div className="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full overflow-hidden border-2 border-white/10 shadow-[0_0_60px_rgba(99,102,241,0.25)]">
+                <div className="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full overflow-hidden border-2 border-white/10 shadow-[0_0_40px_rgba(99,102,241,0.15)]">
                   <Image
                     src="/profile.jpeg"
                     alt="Sidhant Sharma"
@@ -289,9 +281,6 @@ export default function Home() {
                     priority
                   />
                 </div>
-                {/* Corner sparkle accents */}
-                <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-indigo-400 shadow-[0_0_8px_rgba(99,102,241,0.8)] animate-pulse" />
-                <span className="absolute -bottom-1 -left-1 h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(139,92,246,0.8)] animate-pulse animation-delay-500" />
               </div>
             </div>
 
