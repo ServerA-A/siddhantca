@@ -344,14 +344,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* scroll indicator */}
-            <div className="animate-fade-in opacity-0 animation-delay-800 hidden sm:flex">
-              <div className="flex flex-col items-center gap-2 text-[var(--color-muted)]">
-                <span className="text-xs tracking-widest uppercase">Scroll</span>
-                <div className="h-8 w-[1.5px] bg-gradient-to-b from-indigo-500/60 to-transparent" />
-              </div>
-            </div>
           </div>
         </section>
 
