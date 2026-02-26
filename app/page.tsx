@@ -201,7 +201,7 @@ export default function Home() {
                 <Github size={15} />
               </a>
               <a
-                href="/CV_202602172103398633_12314731.pdf"
+                href="/Sidhnat%20CV.pdf"
                 download
                 className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.08] px-3 py-1.5 text-xs font-semibold text-emerald-300 transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15]"
               >
@@ -307,7 +307,7 @@ export default function Home() {
                 About Me
               </a>
               <a
-                href="/CV_202602172103398633_12314731.pdf"
+                href="/Sidhnat%20CV.pdf"
                 download
                 className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-emerald-300 backdrop-blur transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15] hover:shadow-[0_0_24px_rgba(16,185,129,0.2)]"
               >
