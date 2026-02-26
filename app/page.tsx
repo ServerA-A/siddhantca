@@ -266,16 +266,21 @@ export default function Home() {
           <div className="dot-grid absolute inset-0 opacity-40" />
 
           <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 text-center">
-            {/* profile photo */}
+            {/* profile photo with frame */}
             <div className="animate-fade-in-up opacity-0 mb-4 sm:mb-6">
-              <div className="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full overflow-hidden ring-2 ring-indigo-500/30 ring-offset-2 ring-offset-[var(--color-background)] shadow-[0_0_50px_rgba(99,102,241,0.2)]">
-                <Image
-                  src="/profile.jpeg"
-                  alt="Sidhant Sharma"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
+              <div className="profile-frame relative flex items-center justify-center">
+                {/* Spinning gradient ring */}
+                <div className="profile-ring absolute h-34 w-34 sm:h-42 sm:w-42 rounded-full" />
+                {/* Inner photo container */}
+                <div className="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full overflow-hidden border-2 border-white/10 shadow-[0_0_40px_rgba(99,102,241,0.15)]">
+                  <Image
+                    src="/profile.jpeg"
+                    alt="Sidhant Sharma"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                </div>
               </div>
             </div>
 

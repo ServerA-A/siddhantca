@@ -296,6 +296,31 @@ body {
   width: 100%;
 }
 
+/* ── Profile photo frame ── */
+@keyframes profile-ring-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-frame {
+  position: relative;
+}
+
+.profile-ring {
+  background: conic-gradient(
+    from 0deg,
+    #6366f1 0%,
+    #a78bfa 25%,
+    transparent 50%,
+    #a78bfa 75%,
+    #6366f1 100%
+  );
+  animation: profile-ring-spin 6s linear infinite;
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 1px));
+  opacity: 0.6;
+}
+
 /* ── Mobile menu ── */
 @keyframes mobile-menu-enter {
   from {
