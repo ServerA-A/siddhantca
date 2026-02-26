@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Github,
   Linkedin,
@@ -264,10 +265,23 @@ export default function Home() {
           {/* dot grid */}
           <div className="dot-grid absolute inset-0 opacity-40" />
 
-          <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 sm:px-6 text-center">
+          <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 text-center">
+            {/* profile photo */}
+            <div className="animate-fade-in-up opacity-0 mb-4 sm:mb-6">
+              <div className="relative h-28 w-28 sm:h-36 sm:w-36 rounded-full overflow-hidden ring-2 ring-indigo-500/30 ring-offset-2 ring-offset-[var(--color-background)] shadow-[0_0_50px_rgba(99,102,241,0.2)]">
+                <Image
+                  src="/profile.jpeg"
+                  alt="Sidhant Sharma"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </div>
+
             {/* status badge */}
-            <div className="animate-fade-in-up opacity-0 mb-6 sm:mb-8">
-              <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.08] px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-indigo-300">
+            <div className="animate-fade-in-up opacity-0 animation-delay-100 mb-4 sm:mb-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.08] px-4 sm:px-5 py-1.5 text-xs sm:text-sm font-medium text-indigo-300">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500" />
@@ -277,14 +291,14 @@ export default function Home() {
             </div>
 
             {/* name */}
-            <h1 className="animate-fade-in-up opacity-0 animation-delay-100 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-8xl">
+            <h1 className="animate-fade-in-up opacity-0 animation-delay-200 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl">
               <span className="gradient-text">Sidhant</span>
               <br />
               <span className="gradient-text-subtle">Sharma</span>
             </h1>
 
             {/* subtitle */}
-            <p className="animate-fade-in-up opacity-0 animation-delay-200 mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-[var(--color-muted)] md:text-xl">
+            <p className="animate-fade-in-up opacity-0 animation-delay-300 mt-4 sm:mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-[var(--color-muted)] md:text-lg">
               EEE undergrad building at the intersection of{" "}
               <span className="text-indigo-400 font-medium">hardware</span> and{" "}
               <span className="text-violet-400 font-medium">software</span>
@@ -292,24 +306,24 @@ export default function Home() {
             </p>
 
             {/* CTA buttons */}
-            <div className="animate-fade-in-up opacity-0 animation-delay-300 mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <div className="animate-fade-in-up opacity-0 animation-delay-400 mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-indigo-600 px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_32px_rgba(99,102,241,0.4)]"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-indigo-600 px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_32px_rgba(99,102,241,0.4)]"
               >
                 View My Work
                 <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#about"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-medium text-white/80 backdrop-blur transition-all hover:border-white/20 hover:bg-white/[0.08]"
               >
                 About Me
               </a>
               <a
                 href="/Sidhnat%20CV.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-emerald-300 backdrop-blur transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15] hover:shadow-[0_0_24px_rgba(16,185,129,0.2)]"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold text-emerald-300 backdrop-blur transition-all hover:border-emerald-500/40 hover:bg-emerald-500/[0.15] hover:shadow-[0_0_24px_rgba(16,185,129,0.2)]"
               >
                 <Download size={16} />
                 Download CV
@@ -317,7 +331,7 @@ export default function Home() {
             </div>
 
             {/* stats bar */}
-            <div className="animate-fade-in-up opacity-0 animation-delay-500 mt-12 sm:mt-20 grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
+            <div className="animate-fade-in-up opacity-0 animation-delay-600 mt-10 sm:mt-14 grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 divide-x-0 sm:divide-x divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
               {stats.map((s, i) => (
                 <div key={s.label} className={`stat-card ${i < 2 ? 'border-b sm:border-b-0 border-white/[0.06]' : ''}`}>
                   <div className="stat-number">{s.value}</div>
